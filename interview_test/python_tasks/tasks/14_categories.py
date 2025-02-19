@@ -8,11 +8,13 @@ from python_tasks.models import Product_Category
 
 
 def categories():
+    #get query set wit all categories
     categories = Product_Category.objects.all()
 
     result = []
     category_results = []
 
+    #iterate through every category to get the total sales, total discount and total orders and add them to category result list
     for category in categories:
         total_sales = 0
         total_discount = 0
@@ -32,12 +34,14 @@ def categories():
             'total_orders': total_orders
         })
 
+    #iterate through category result and add the data to the result list
     for details in category_results:
         result.append(f'\nCategory: {details['category']}')
         result.append(f'Total Sales Amount: {details['total_sales']}')
         result.append(f'Total Discounted Amount: {details['total_discount']}')
         result.append(f'Total Number of Orders: {details['total_orders']}')
 
+    #get the category with the highest sales and orders from the list using anonymos lambda function
     highest_sales_category = max(category_results, key=lambda x: x['total_sales'])
     result.append(f'\nProduct category with the highest sales amount: {highest_sales_category['category']}')
 
