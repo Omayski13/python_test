@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from python_tasks.mixins import ModifiedDataMixin
 
-
+# creating models names with underscore because of the task 2
 class Product_Category(ModifiedDataMixin):   #Python convention ProductCategory
     ProductCategoryID = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=255)
@@ -36,7 +36,7 @@ class Product(ModifiedDataMixin):
     Class = models.CharField(max_length=50, blank=True, null=True)
     Style = models.CharField(max_length=50, blank=True, null=True)
     ProductSubcategoryID = models.ForeignKey(Product_Subcategory, related_name="subcategory", on_delete=models.CASCADE,null=True, blank=True,)
-    ProductModelID = models.IntegerField(null=True, blank=True)
+    ProductModelID = models.IntegerField(null=True, blank=True) # Could be ForeignKey if other table models exists
     SellStartDate = models.DateTimeField(null=True, blank=True)
     SellEndDate = models.DateTimeField(null=True, blank=True)
     DiscontinuedDate = models.DateTimeField(null=True, blank=True)
@@ -50,24 +50,24 @@ class Territory(ModifiedDataMixin):
 
 class Sales(ModifiedDataMixin):
     SalesOrderID = models.AutoField(primary_key=True)
-    RevisionNumber = models.IntegerField(null=True, blank=True)
+    RevisionNumber = models.IntegerField(null=True, blank=True) # Could be ForeignKey if other table revision exists
     OrderDate = models.DateTimeField(null=True, blank=True)
     DueDate = models.DateTimeField(null=True, blank=True)
     ShipDate = models.DateTimeField(null=True, blank=True)
-    Status = models.IntegerField(null=True, blank=True)
+    Status = models.IntegerField(null=True, blank=True) # Could be ForeignKey if other table orders_status exists
     OnlineOrderFlag = models.BooleanField(default=False,null=True, blank=True)
     SalesOrderNumber = models.CharField(max_length=50,null=True, blank=True)
     PurchaseOrderNumber = models.CharField(max_length=50,null=True, blank=True)
-    AccountNumber = models.CharField(max_length=50,null=True, blank=True)
-    CustomerID = models.IntegerField(null=True, blank=True)
-    SalesPersonID = models.IntegerField(null=True, blank=True)
-    TerritoryID = models.ForeignKey(Territory, on_delete=models.CASCADE, null=True, blank=True)
+    AccountNumber = models.CharField(max_length=50,null=True, blank=True) # Could be ForeignKey if other table accounts exists
+    CustomerID = models.IntegerField(null=True, blank=True) # Could be ForeignKey if other table customers exists
+    SalesPersonID = models.IntegerField(null=True, blank=True) # Could be ForeignKey if other other table employees exist
+    TerritoryID = models.ForeignKey(Territory, on_delete=models.CASCADE, null=True, blank=True) # created as ForeignKey because of the territory table
     BillToAddressID = models.IntegerField(null=True, blank=True)
     ShipToAddressID = models.IntegerField(null=True, blank=True)
-    ShipMethodID = models.IntegerField(null=True, blank=True)
+    ShipMethodID = models.IntegerField(null=True, blank=True) # Could be ForeignKey if other other table shipping methods exist
     CreditCardID = models.IntegerField(null=True, blank=True)
     CreditCardApprovalCode = models.CharField(max_length=50, null=True, blank=True)
-    CurrencyRateID = models.IntegerField(null=True, blank=True)
+    CurrencyRateID = models.IntegerField(null=True, blank=True) # Could be ForeignKey if other other table currencies exist
     SubTotal = models.DecimalField(max_digits=18, decimal_places=4,null=True, blank=True)
     TaxAmt = models.DecimalField(max_digits=18, decimal_places=4,null=True, blank=True)
     Freight = models.DecimalField(max_digits=18, decimal_places=4,null=True, blank=True)
@@ -80,13 +80,13 @@ class Sales(ModifiedDataMixin):
 class Special_Offer(ModifiedDataMixin):    #Python convention SpecialOffer
     SpecialOfferID = models.AutoField(primary_key=True)
     Description = models.CharField(max_length=255)
-    DiscountPct = models.DecimalField(max_digits=5, decimal_places=2)  # Discount as a percentage
+    DiscountPct = models.DecimalField(max_digits=5, decimal_places=2)
     Type = models.CharField(max_length=50)
     Category = models.CharField(max_length=50)
     StartDate = models.DateTimeField()
     EndDate = models.DateTimeField()
     MinQty = models.IntegerField()
-    MaxQty = models.IntegerField(null=True, blank=True)  # MaxQty can be null
+    MaxQty = models.IntegerField(null=True, blank=True)
     rowguid = models.CharField(max_length=50)
 
 
