@@ -38,7 +38,7 @@ Run the following command to activate the virtual environment:
 
 8. Import data in the tables
 	Use the files from csv_files directory in the project.
-	If your using PyCharm u can just drag them to the table name
+	If your using PyCharm you can just drag them to the table name
 	*** for files sales and product when importing tick these two options
 	Insert inconvertible values as null
 	Disable indexes and trigger,lock table
