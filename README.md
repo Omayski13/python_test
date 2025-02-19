@@ -36,7 +36,7 @@
    ```
 
 ### 4. Create a .env File
-At the root level of the project (where manage.py is located), create a .env file using [this template](https://github.com/Omayski13/Coach_app/blob/main/.env.template) or just copy from below:
+At the root level of the project (where manage.py is located), create a .env file using [this template](https://github.com/Omayski13/python_test/blob/main/interview_test/.env_template) or just copy from below:
 
   ```py
 
